@@ -31,7 +31,7 @@ function empCaseStatement(){
 		*)
 			wageForADay=0
 			;;
-		esac
+	esac
 }
 empCaseStatement
 
@@ -62,10 +62,10 @@ function wagesForAMonth(){
 			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
 		else
 			wageForADay=0
-   	fi
+		fi
 		echo $wageForADay
 		totalWage=$((totalWage+wageForADay)) #calculate the total salary for month
-	done
+done
 }
 wagesForAMonth
 
@@ -84,9 +84,9 @@ do
       *)
          wageForADay=0
          ;;
-      esac
+	esac
 	empWorkingHours=$((empWorkingHours+wageForADay))
-totalSalary=$(( $empWorkingHours*$EMP_RATE_PER_HOUR ))#calculate the  works hours or days
+	totalSalary=$(( $empWorkingHours*$EMP_RATE_PER_HOUR ))#calculate the  works hours or days
 done
 
 #function to calulate employee wages
