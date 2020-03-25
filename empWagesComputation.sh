@@ -14,6 +14,22 @@ echo "Welcome to Employee wages computation"
 function dailyEmpWage(){
    echo $(($1*$2))
 }
+#function of employee wages solve using case statement
+function empCaseStatement(){
+	local empCheck=$((RANDOM%2))
+	case $empCheck in
+		$EMP_FULL_DAY_HOUR)
+			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_FULL_DAY_HOUR )
+			;;
+		$EMP_PART_DAY_HOUR)
+			wageForADay=$( dailyEmpWage  $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
+			;;
+		*)
+			wageForADay=0
+			;;
+		esac
+}	
+empCaseStatement
 
 #function to calculate employee type, Full time or Part time
 function employeeType(){
