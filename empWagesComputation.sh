@@ -30,7 +30,7 @@ function empCaseStatement(){
 		*)
 			wageForADay=0
 			;;
-		esac
+	esac
 }
 empCaseStatement
 
