@@ -40,5 +40,5 @@ do
 	empMonthlyWage=$(($empMonthlyWage+$dailyWage))
 done
 echo ${dailyWage[@]}
-echo ${empMonthlyWage[@]}
+echo "${!empMonthlyWage[@]}" value="${empMonthlyWage[@]}"
 
