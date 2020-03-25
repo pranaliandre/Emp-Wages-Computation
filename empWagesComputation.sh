@@ -30,7 +30,7 @@ function empCaseStatement(){
 		*)
 			wageForADay=0
 			;;
-		esac
+	esac
 }
 empCaseStatement
 
@@ -73,16 +73,16 @@ while [[ $empWorkingHours -lt $TOTAL_WORKING_HRS && $dayCount -lt $NUM_OF_WORKIN
 do
 	((dayCount++))
 	local empCheck=$((RANDOM%3))
-   case $empCheck in
-      $FULL_TIME_EMP)
-         wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_FULL_DAY_HOUR )
-         ;;
-      $PART_TIME_EMP)
-         wageForADay=$( dailyEmpWage  $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
-         ;;
-      *)
-         wageForADay=0
-         ;;
+	case $empCheck in
+		$FULL_TIME_EMP)
+			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_FULL_DAY_HOUR )
+			;;
+		$PART_TIME_EMP)
+			wageForADay=$( dailyEmpWage  $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
+			;;
+		*)
+			wageForADay=0
+			;;
 	esac
 	empWorkingHours=$((empWorkingHours+wageForADay))
 	totalSalary=$(( $empWorkingHours*$EMP_RATE_PER_HOUR ))#calculate the  works hours or days
