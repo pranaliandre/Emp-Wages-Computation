@@ -106,7 +106,7 @@ function getWorkingHours()
 	echo $wageForADay
 }
 
-while [[ $empWorkingHours -lt $TOTAL_WORKING_HRS && $dayCount -lt $NUM_OF_WORKING_DAYS ]]
+while [[ $empWorkingHours -lt $TOTAL_WORKING_HRS && $dayCount -lt $NUM_OF_WORKING ]]
 do
 	((dayCount++))
 	wageForADay="$( getWorkingHours $((RANDOM%3)) )"
