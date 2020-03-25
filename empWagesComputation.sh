@@ -64,7 +64,7 @@ function wagesForAMonth(){
 		fi
 		echo $wageForADay
 		totalWage=$((totalWage+wageForADay)) #calculate the total salary for month
-done
+	done
 }
 wagesForAMonth
 
