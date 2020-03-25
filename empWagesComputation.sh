@@ -1,5 +1,4 @@
 #!/bin/bash -x
-B
 #CONSTANTS
 EMP_RATE_PER_HOUR=20
 EMP_FULL_DAY_HOUR=8
@@ -22,10 +21,10 @@ function dailyEmpWage(){
 function empCaseStatement(){
 	local empCheck=$((RANDOM%3))
 	case $empCheck in
-		$EMP_FULL_DAY_HOUR)
+		$FULL_TIME_EMP)
 			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_FULL_DAY_HOUR )
 			;;
-		$EMP_PART_DAY_HOUR)
+		$PART_TIME_EMP)
 			wageForADay=$( dailyEmpWage  $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
 			;;
 		*)
@@ -62,7 +61,7 @@ function wagesForAMonth(){
 			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
 		else
 			wageForADay=0
-   	fi
+		fi
 		echo $wageForADay
 		totalWage=$((totalWage+wageForADay)) #calculate the total salary for month
 	done
@@ -75,19 +74,46 @@ do
 	((dayCount++))
 	local empCheck=$((RANDOM%3))
    case $empCheck in
-      $EMP_FULL_DAY_HOUR)
+      $FULL_TIME_EMP)
          wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_FULL_DAY_HOUR )
          ;;
-      $EMP_PART_DAY_HOUR)
+      $PART_TIME_EMP)
          wageForADay=$( dailyEmpWage  $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
          ;;
       *)
          wageForADay=0
          ;;
-      esac
+	esac
 	empWorkingHours=$((empWorkingHours+wageForADay))
-totalSalary=$(( $empWorkingHours*$EMP_RATE_PER_HOUR ))#calculate the  works hours or days
+	totalSalary=$(( $empWorkingHours*$EMP_RATE_PER_HOUR ))#calculate the  works hours or days
 done
+
+# Function to get working hours
+function getWorkingHours()
+{
+	local empCheck=$1
+	case $empCheck in
+		$FULL_TIME_EMP)
+			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_FULL_DAY_HOUR )
+			;;
+		$PART_TIME_EMP)
+			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
+			;;
+		*)
+			wageForADay=0
+			;;
+	esac
+	echo $wageForADay
+}
+
+while [[ $empWorkingHours -lt $TOTAL_WORKING_HRS && $dayCount -lt $NUM_OF_WORKING_DAYS ]]
+do
+	((dayCount++))
+	wageForADay="$( getWorkingHours $((RANDOM%3)) )"
+	empWorkingHours=$((empWorkingHours+wageForADay))
+done
+
+totalSalary=$(( $empWorkingHours*$EMP_RATE_PER_HOUR ))
 
 #function to calulate employee wages
 # param1 : wages per hour
