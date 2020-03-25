@@ -18,10 +18,10 @@ function dailyEmpWage(){
 function empCaseStatement(){
 	local empCheck=$((RANDOM%2))
 	case $empCheck in
-		$EMP_FULL_DAY_HOUR)
+		$FULL_TIME_EMP)
 			wageForADay=$( dailyEmpWage $EMP_RATE_PER_HOUR $EMP_FULL_DAY_HOUR )
 			;;
-		$EMP_PART_DAY_HOUR)
+		$PART_TIME_EMP)
 			wageForADay=$( dailyEmpWage  $EMP_RATE_PER_HOUR $EMP_PART_DAY_HOUR )
 			;;
 		*)
